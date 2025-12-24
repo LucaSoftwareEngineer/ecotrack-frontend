@@ -1,6 +1,5 @@
+import { createBrowserRouter, RouterProvider } from "react-router"
 
-export const App = () => (
-  <div className="App">
-    echotrack frontend ok
-  </div>
-)
+const router = createBrowserRouter([{ path: "/", element: <div>test</div> }])
+
+export const App = () => <RouterProvider router={router} />

@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify"
 import { useNavigate } from "react-router"
 import logo from "../../assets/img/logo.png"
 import UserProfileFoto from "../../assets/img/user-profile-foto.png"
+import { useAppSelector } from "../../hooks.ts"
 
 const NavbarComponent = () => {
   const navigate = useNavigate()
@@ -47,6 +48,13 @@ const NavbarComponent = () => {
   const dashboardHandler = () => {
     navigate("/dashboard")
   }
+
+  const { name, surname, email } = useAppSelector(store => {
+    const name: string = store.user.name
+    const surname: string = store.user.surname
+    const email: string = store.user.email
+    return { name, surname, email }
+  })
 
   return (
     <>
@@ -110,10 +118,10 @@ const NavbarComponent = () => {
       <div className={userDropDownClasse}>
         <div className="px-4 py-3" role="none">
           <p className="text-sm text-gray-900" role="none">
-            name surname
+            {name} {surname}
           </p>
           <p className="truncate text-sm font-medium text-gray-900" role="none">
-            username
+            {email}
           </p>
         </div>
         <ul className="py-1" role="none">

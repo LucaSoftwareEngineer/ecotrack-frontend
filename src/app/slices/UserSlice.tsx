@@ -4,11 +4,13 @@ import { ILoginResponse } from "../services/LoginService/ILoginResponse"
 export interface UserState {
   token: string
   id: number | null
+  email: string
 }
 
 const UserInitialState: UserState = {
   token: "",
   id: null,
+  email: "",
 }
 
 export const userSlice = createSlice({
@@ -21,8 +23,11 @@ export const userSlice = createSlice({
     setUserId: (state, action: PayloadAction<ILoginResponse>) => {
       state.id = action.payload.id
     },
+    setUserEmail: (state, action: PayloadAction<ILoginResponse>) => {
+      state.email = action.payload.email
+    },
   },
 })
 
-export const { setUserToken, setUserId } = userSlice.actions
+export const { setUserToken, setUserId, setUserEmail } = userSlice.actions
 export default userSlice.reducer

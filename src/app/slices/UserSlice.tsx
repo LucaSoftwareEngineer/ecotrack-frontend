@@ -5,12 +5,16 @@ export interface UserState {
   token: string
   id: number | null
   email: string
+  name: string
+  surname: string
 }
 
 const UserInitialState: UserState = {
   token: "",
   id: null,
   email: "",
+  name: "",
+  surname: "",
 }
 
 export const userSlice = createSlice({
@@ -26,8 +30,20 @@ export const userSlice = createSlice({
     setUserEmail: (state, action: PayloadAction<ILoginResponse>) => {
       state.email = action.payload.email
     },
+    setUserName: (state, action: PayloadAction<ILoginResponse>) => {
+      state.name = action.payload.name
+    },
+    setUserSurname: (state, action: PayloadAction<ILoginResponse>) => {
+      state.surname = action.payload.surname
+    },
   },
 })
 
-export const { setUserToken, setUserId, setUserEmail } = userSlice.actions
+export const {
+  setUserToken,
+  setUserId,
+  setUserEmail,
+  setUserName,
+  setUserSurname,
+} = userSlice.actions
 export default userSlice.reducer

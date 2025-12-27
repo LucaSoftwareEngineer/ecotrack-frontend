@@ -2,7 +2,13 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router"
 import LoginService from "../services/LoginService/LoginService.ts"
-import { setUserEmail, setUserId, setUserToken } from "../slices/UserSlice.tsx"
+import {
+  setUserEmail,
+  setUserId,
+  setUserName,
+  setUserSurname,
+  setUserToken,
+} from "../slices/UserSlice.tsx"
 import { useAppDispatch } from "../hooks.ts"
 
 export const useLogin = () => {
@@ -31,6 +37,8 @@ export const useLogin = () => {
             dispatch(setUserToken(response.data))
             dispatch(setUserId(response.data))
             dispatch(setUserEmail(response.data))
+            dispatch(setUserName(response.data))
+            dispatch(setUserSurname(response.data))
             toast.success("Accesso effettuato...")
             setTimeout(() => {
               navigate("/dashboard")

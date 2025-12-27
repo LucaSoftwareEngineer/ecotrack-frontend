@@ -2,11 +2,11 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router"
 import LoginService from "../services/LoginService/LoginService.ts"
-import { setUserToken } from "../slices/UserSlice.tsx"
+import { setUserId, setUserToken } from "../slices/UserSlice.tsx"
 import { useAppDispatch } from "../hooks.ts"
 
 export const useLogin = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -29,6 +29,7 @@ export const useLogin = () => {
         .then(response => {
           if (response.status === 200) {
             dispatch(setUserToken(response.data))
+            dispatch(setUserId(response.data))
             toast.success("Accesso effettuato...")
             setTimeout(() => {
               navigate("/dashboard")

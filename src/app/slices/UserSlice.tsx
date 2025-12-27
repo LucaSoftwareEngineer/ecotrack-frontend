@@ -1,12 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ILoginResponse } from "../services/LoginService/ILoginResponse";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { ILoginResponse } from "../services/LoginService/ILoginResponse"
 
 export interface UserState {
-  token: string;
+  token: string
+  id: number | null
 }
 
-const UserInitialState:UserState = {
-  token: ''
+const UserInitialState: UserState = {
+  token: "",
+  id: null,
 }
 
 export const userSlice = createSlice({
@@ -14,10 +16,13 @@ export const userSlice = createSlice({
   initialState: UserInitialState,
   reducers: {
     setUserToken: (state, action: PayloadAction<ILoginResponse>) => {
-      state.token = action.payload.token;
-    }
-  }
+      state.token = action.payload.token
+    },
+    setUserId: (state, action: PayloadAction<ILoginResponse>) => {
+      state.id = action.payload.id
+    },
+  },
 })
 
-export const {setUserToken} = userSlice.actions;
-export default userSlice.reducer;
+export const { setUserToken, setUserId } = userSlice.actions
+export default userSlice.reducer
